@@ -15,19 +15,18 @@ export class DojosService {
     private dojoRepository: Repository<Dojo>,
   ) {}
 
-  async createDojoForUser(
-    userId: string,
-    dojoData: CreateDojoDto,
-  ): Promise<Dojo> {
+  async createDojoForUser(createDojoDto: CreateDojoDto): Promise<Dojo> {
+    const { userId } = createDojoDto;
     const user = await this.userRepository.findOneBy({ id: userId });
+    const { password, ...userWithoutPassword } = user;
 
     if (!user) {
       throw new NotFoundException('User not found');
     }
 
     const newDojo = this.dojoRepository.create({
-      ...dojoData,
-      user,
+      ...createDojoDto,
+      user: userWithoutPassword,
     });
 
     return this.dojoRepository.save(newDojo);

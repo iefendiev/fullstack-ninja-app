@@ -17,8 +17,8 @@ export class DojosController {
   constructor(private readonly dojosService: DojosService) {}
 
   @Post()
-  create(@Body() userId: string, createDojoDto: CreateDojoDto) {
-    return this.dojosService.createDojoForUser(userId, createDojoDto);
+  create(@Body() createDojoDto: CreateDojoDto) {
+    return this.dojosService.createDojoForUser(createDojoDto);
   }
 
   @Get()
