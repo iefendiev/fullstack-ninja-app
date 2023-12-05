@@ -41,6 +41,10 @@ export class AuthService {
   // 2 . hash password
   // 3 . save user to db
   // 4 . return user
+
+  // TODO better error handling for:
+  // - duplicate email
+  // send JWT on successful sign up, so that client is automatically logged in
   async signUp(createUserDto: CreateUserDto) {
     const { email, password } = createUserDto;
     const user = await this.usersService.findOne(email);
