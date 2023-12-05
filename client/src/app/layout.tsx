@@ -1,5 +1,5 @@
 import { PropsWithChildren } from 'react';
-import '../src/styles/globals.css';
+import '../../src/styles/globals.css';
 import Providers from '@/utils/provider';
 
 export const metadata = {
