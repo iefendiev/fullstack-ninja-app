@@ -1,4 +1,5 @@
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+import { Dojo } from 'src/dojos/entities/dojo.entity';
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from 'typeorm';
 
 @Entity()
 export class Ninja {
@@ -10,4 +11,7 @@ export class Ninja {
 
   @Column()
   belt!: string;
+
+  @ManyToOne(() => Dojo, (dojo) => dojo.ninjas)
+  dojo: Dojo;
 }
