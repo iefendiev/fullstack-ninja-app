@@ -1,9 +1,14 @@
 'use client';
 
-import { FormProvider, useForm } from 'react-hook-form';
-import Link from 'next/link';
-import AuthLayout from '../layout';
 import { ReactNode } from 'react';
+import Link from 'next/link';
+import { FormProvider, useForm } from 'react-hook-form';
+
+import AuthLayout from '../layout';
+import { register as registerUser } from '@/api/register.api';
+import { useRouter } from 'next/navigation';
+import { FormInput } from '@/components/Input/FormInput';
+import { ROUTES } from '@/constants';
 
 type FormData = {
   email: string;
@@ -13,10 +18,15 @@ type FormData = {
 
 export default function Register() {
   const methods = useForm<FormData>();
-  const { handleSubmit, register } = methods;
+  const { push } = useRouter();
+  const { handleSubmit } = methods;
 
-  const onSubmit = (data: FormData) => {
-    console.log(data);
+  const onSubmit = async (data: FormData) => {
+    await registerUser({
+      email: data.email,
+      password: data.password,
+    });
+    push(ROUTES.LOGIN);
   };
 
   return (
@@ -26,33 +36,40 @@ export default function Register() {
           <div className="flex flex-col justify-center items-center gap-12">
             <h1 className="text-4xl text-white font-bold">Register</h1>
             <div className="flex flex-col justify-center items-center gap-4">
-              <div className="flex flex-col">
-                <label className="text-white font-bold">Email</label>
-                <input
-                  className="border-2 border-gray-700 rounded-md px-2 py-1 w-[300px]"
-                  type="email"
-                  placeholder="Email"
-                  {...register('email')}
-                />
-              </div>
-              <div className="flex flex-col">
-                <label className="text-white font-bold">Password</label>
-                <input
-                  className="border-2 border-gray-700 rounded-md px-2 py-1 w-[300px]"
-                  type="password"
-                  placeholder="Password"
-                  {...register('password')}
-                />
-              </div>
-              <div className="flex flex-col">
-                <label className="text-white font-bold">Confirm Password</label>
-                <input
-                  className="border-2 border-gray-700 rounded-md px-2 py-1 w-[300px]"
-                  type="password"
-                  placeholder="Confirm Password"
-                  {...register('confirmPassword')}
-                />
-              </div>
+              <FormInput
+                fieldName="email"
+                placeholder="Email"
+                registerOptions={{
+                  required: 'Email is required',
+                  pattern: {
+                    value: /\S+@\S+\.\S+/,
+                    message: 'Entered value does not match email format',
+                  },
+                }}
+              />
+              <FormInput
+                inputType="password"
+                fieldName="password"
+                placeholder="Password"
+                registerOptions={{
+                  required: 'Password is required',
+                  minLength: {
+                    value: 6,
+                    message: 'Password must be at least 6 characters',
+                  },
+                }}
+              />
+              <FormInput
+                inputType="password"
+                fieldName="confirmPassword"
+                placeholder="Confirm Password"
+                registerOptions={{
+                  required: 'Confirm Password is required',
+                  validate: (value) =>
+                    value === methods.getValues('password') ||
+                    'The passwords do not match',
+                }}
+              />
               <button
                 className="bg-purple-500 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded mt-2"
                 type="submit"
