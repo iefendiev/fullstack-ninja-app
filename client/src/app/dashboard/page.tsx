@@ -1,6 +1,6 @@
 'use client';
 import { useNinjas } from '@API/ninjas/useNinjas';
-import { AddNinjaModal } from '@/components/AddNinjaModal/AddNinjaModal';
+import { AddNinjaModal } from '@/components/Dialog/AddNinjaModal/AddNinjaModal';
 import { NinjaCard } from '@/components/NinjaCard';
 import { useMemo } from 'react';
 

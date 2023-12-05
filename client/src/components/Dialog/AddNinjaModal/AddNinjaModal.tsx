@@ -6,7 +6,7 @@ import {
   DialogContent,
   DialogFooter,
   DialogTrigger,
-} from '@/components/ui/Dialog/Dialog';
+} from '@/components/Dialog/Dialog';
 import { useCreateNinja } from '@/api/ninjas/useCreateNinja';
 import {
   Select,
@@ -14,8 +14,8 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from '../ui/Select/Select';
-import { FormControl, FormField, FormItem, FormLabel } from '../ui/Form/Form';
+} from '../../Select/Select';
+import { FormControl, FormField, FormItem, FormLabel } from '../../Form/Form';
 import { useState } from 'react';
 import { useNinjas } from '@/api/ninjas/useNinjas';
 
