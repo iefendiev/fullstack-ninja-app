@@ -5,7 +5,6 @@ import { AppService } from './app.service';
 import { NinjasModule } from './ninjas/ninjas.module';
 import { AuthModule } from './auth/auth.module';
 import { DojosModule } from './dojos/dojos.module';
-import { DojosModule } from './dojos/dojos.module';
 
 @Module({
   imports: [

@@ -8,7 +8,8 @@ import { User } from './entities/user.entity';
 @Injectable()
 export class UsersService {
   constructor(
-    @InjectRepository(User) private userRepository: Repository<User>,
+    @InjectRepository(User)
+    private userRepository: Repository<User>,
   ) {}
 
   create(createUserDto: CreateUserDto) {
@@ -20,8 +21,8 @@ export class UsersService {
     return this.userRepository.find();
   }
 
-  async findOne(email: User['email']): Promise<User | undefined> {
-    return this.userRepository.findOneBy({ email });
+  async findOne(id: User['id']): Promise<User | undefined> {
+    return this.userRepository.findOneBy({ id });
   }
 
   update(id: string, updateUserDto: UpdateUserDto) {

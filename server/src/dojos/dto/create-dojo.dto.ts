@@ -1,1 +1,3 @@
-export class CreateDojoDto {}
+export class CreateDojoDto {
+  name: string;
+}

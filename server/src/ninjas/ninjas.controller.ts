@@ -33,8 +33,11 @@ export class NinjasController {
   }
 
   @Post()
-  createNinja(@Body(new ValidationPipe()) createNinjaDto: CreateNinjaDto) {
-    return this.ninjasService.createNinja(createNinjaDto);
+  createNinja(
+    @Body(new ValidationPipe()) dojoId: string,
+    createNinjaDto: CreateNinjaDto,
+  ) {
+    return this.ninjasService.addNinjaToDojo(dojoId, createNinjaDto);
   }
 
   @Put(':id')

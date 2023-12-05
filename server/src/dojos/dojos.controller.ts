@@ -1,15 +1,24 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+} from '@nestjs/common';
 import { DojosService } from './dojos.service';
 import { CreateDojoDto } from './dto/create-dojo.dto';
 import { UpdateDojoDto } from './dto/update-dojo.dto';
 
+// TODO add auth guard
 @Controller('dojos')
 export class DojosController {
   constructor(private readonly dojosService: DojosService) {}
 
   @Post()
-  create(@Body() createDojoDto: CreateDojoDto) {
-    return this.dojosService.create(createDojoDto);
+  create(@Body() userId: string, createDojoDto: CreateDojoDto) {
+    return this.dojosService.createDojoForUser(userId, createDojoDto);
   }
 
   @Get()
