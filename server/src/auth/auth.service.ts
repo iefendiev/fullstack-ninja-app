@@ -16,7 +16,7 @@ export class AuthService {
 
   async signIn(loginDto: SignInDto) {
     const { email, password } = loginDto;
-    const foundUser = await this.usersService.findOne(email);
+    const foundUser = await this.usersService.findOneBy({ email });
 
     // compare hashed password with password from request
     // if they match, return access token
@@ -47,7 +47,7 @@ export class AuthService {
   // send JWT on successful sign up, so that client is automatically logged in
   async signUp(createUserDto: CreateUserDto) {
     const { email, password } = createUserDto;
-    const user = await this.usersService.findOne(email);
+    const user = await this.usersService.findOneBy({ email });
 
     if (user) {
       throw new Error('Email already in use');

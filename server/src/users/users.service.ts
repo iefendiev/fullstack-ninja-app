@@ -25,6 +25,10 @@ export class UsersService {
     return this.userRepository.findOneBy({ id });
   }
 
+  async findOneBy(conditions: Partial<User>): Promise<User | undefined> {
+    return this.userRepository.findOneBy(conditions);
+  }
+
   update(id: string, updateUserDto: UpdateUserDto) {
     return `This action updates a #${id} user`;
   }
