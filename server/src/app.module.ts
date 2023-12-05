@@ -4,6 +4,8 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { NinjasModule } from './ninjas/ninjas.module';
 import { AuthModule } from './auth/auth.module';
+import { DojosModule } from './dojos/dojos.module';
+import { DojosModule } from './dojos/dojos.module';
 
 @Module({
   imports: [
@@ -25,6 +27,7 @@ import { AuthModule } from './auth/auth.module';
     // rest of the modules
     NinjasModule,
     AuthModule,
+    DojosModule,
   ],
   controllers: [AppController],
   providers: [AppService],
