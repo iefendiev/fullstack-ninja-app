@@ -13,6 +13,7 @@ The app is being developed to include database relations. This project is an opp
 
 - **Frontend**
   - Developed using [Next.js 13](https://nextjs.org/) with TypeScript.
+  - [React Query](https://react-query.tanstack.com/) for efficient data fetching and state management.
   - Incorporates [Shadcn](https://ui.shadcn.com/) for continuous learning and exploring new technologies.
 
 ## Functionality
