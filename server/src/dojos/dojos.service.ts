@@ -15,9 +15,9 @@ export class DojosService {
     private dojoRepository: Repository<Dojo>,
   ) {}
 
-  async createDojoForUser(createDojoDto: CreateDojoDto): Promise<Dojo> {
-    const { userId } = createDojoDto;
+  async createDojoForUser(userId, createDojoDto: CreateDojoDto): Promise<Dojo> {
     const user = await this.userRepository.findOneBy({ id: userId });
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { password, ...userWithoutPassword } = user;
 
     if (!user) {
@@ -32,14 +32,18 @@ export class DojosService {
     return this.dojoRepository.save(newDojo);
   }
 
-  findAll() {
-    return `This action returns all dojos`;
+  findAllDojosForUser(userId: number): Promise<Dojo[]> {
+    return this.dojoRepository.find({
+      where: { user: { id: userId } },
+      relations: ['ninjas'],
+    });
   }
 
   findOne(id: number) {
     return `This action returns a #${id} dojo`;
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   update(id: number, updateDojoDto: UpdateDojoDto) {
     return `This action updates a #${id} dojo`;
   }

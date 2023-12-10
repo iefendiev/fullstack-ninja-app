@@ -17,42 +17,53 @@ import {
 } from '../../Select/Select';
 import { FormControl, FormField, FormItem, FormLabel } from '../../Form/Form';
 import { useState } from 'react';
-import { useNinjas } from '@/api/ninjas/useNinjas';
+import { useDojos } from '@/api/dojos/useDojos';
+import { BeltOptions } from '@/types';
+
+interface AddNinjaModalProps {
+  dojoId: number;
+}
 
 type FormValues = {
   name: string;
-  belt: string;
+  belt: BeltOptions;
 };
 
-export const AddNinjaModal = () => {
+const BELT_OPTIONS: { label: string; value: BeltOptions }[] = [
+  { label: 'Black', value: BeltOptions.BLACK },
+  { label: 'Orange', value: BeltOptions.ORANGE },
+  { label: 'White', value: BeltOptions.WHITE },
+];
+
+export const AddNinjaModal = ({ dojoId }: AddNinjaModalProps) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const { mutate: createNinja } = useCreateNinja();
-  const { refetch: refetchNinjas } = useNinjas();
+  const { refetch: refetchDojos } = useDojos();
 
   // TODO generate the schema from api
   const methods = useForm<FormValues>();
   const { register, handleSubmit, control } = methods;
 
-  const handleCreateNinja = (formData: FormValues) => {
-    createNinja(formData, {
-      onSuccess: () => {
-        refetchNinjas();
+  const handleCreateNinja = (ninjaFormData: FormValues) => {
+    createNinja(
+      {
+        dojoId,
+        ...ninjaFormData,
       },
-    });
+      {
+        onSuccess: () => {
+          refetchDojos();
+        },
+      }
+    );
     setIsModalOpen(false);
   };
-
-  const BELT_OPTIONS = [
-    { label: 'Black', value: 'black' },
-    { label: 'Orange', value: 'orange' },
-    { label: 'White', value: 'white' },
-  ];
 
   return (
     <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
       <DialogTrigger asChild>
         <button className="text-white border border-solid border-purple-700 rounded-3xl w-fit px-4 py-2 mx-auto">
-          Add Ninja to this Dojo
+          Add Ninja
         </button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">

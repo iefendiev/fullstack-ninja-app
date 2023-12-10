@@ -23,11 +23,8 @@ export class NinjasService {
     return this.ninjaRepository.findOneBy({ id });
   }
 
-  async addNinjaToDojo(
-    dojoId: string,
-    ninjaData: CreateNinjaDto,
-  ): Promise<Ninja> {
-    const dojo = await this.dojoRepository.findOneBy({ id: +dojoId });
+  async addNinjaToDojo(ninjaData: CreateNinjaDto): Promise<Ninja> {
+    const dojo = await this.dojoRepository.findOneBy({ id: ninjaData.dojoId });
 
     if (!dojo) {
       throw new NotFoundException('Dojo not found');

@@ -7,7 +7,7 @@ enum Belt {
 }
 
 export class CreateNinjaDto {
-  id: string;
+  dojoId: number;
   @MinLength(3)
   name: string;
 

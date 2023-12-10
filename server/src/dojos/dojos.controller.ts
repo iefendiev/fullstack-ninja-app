@@ -6,24 +6,35 @@ import {
   Patch,
   Param,
   Delete,
+  UseGuards,
+  Req,
 } from '@nestjs/common';
 import { DojosService } from './dojos.service';
 import { CreateDojoDto } from './dto/create-dojo.dto';
 import { UpdateDojoDto } from './dto/update-dojo.dto';
+import { AuthGuard } from 'src/auth/auth.guard';
+import { Request as ExpressRequest } from 'express';
 
-// TODO add auth guard
+export interface AuthRequest extends ExpressRequest {
+  user?: { id: number };
+  cookies: { [key: string]: string };
+}
+
+@UseGuards(AuthGuard)
 @Controller('dojos')
 export class DojosController {
   constructor(private readonly dojosService: DojosService) {}
 
   @Post()
-  create(@Body() createDojoDto: CreateDojoDto) {
-    return this.dojosService.createDojoForUser(createDojoDto);
+  create(@Req() req: AuthRequest, @Body() createDojoDto: CreateDojoDto) {
+    return this.dojosService.createDojoForUser(req.user.id, createDojoDto);
   }
 
   @Get()
-  findAll() {
-    return this.dojosService.findAll();
+  findAll(@Req() req: AuthRequest) {
+    // get the user id from token
+    const user = req.user;
+    return this.dojosService.findAllDojosForUser(user.id);
   }
 
   @Get(':id')

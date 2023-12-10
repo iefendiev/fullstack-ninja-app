@@ -1,10 +1,16 @@
-import { NinjaProps } from '@/types';
+import { BeltOptions, NinjaProps } from '@/types';
+
+const colorClasses = {
+  [BeltOptions.BLACK]: 'bg-black',
+  [BeltOptions.ORANGE]: 'bg-orange-400',
+  [BeltOptions.WHITE]: 'bg-white',
+};
 
 export const NinjaCard = ({ ninja }: { ninja: NinjaProps }) => (
-  <div className="border border-white rounded px-8 py-6">
-    <div className="w-full flex flex-col justify-between">
-      <div className="text-white font-bold text-xl">{ninja.name}</div>
-      <div className="text-white font-bold text-lg">{ninja.belt}</div>
+  <li className="text-left w-full">
+    <div className="w-full flex gap-2 items-center">
+      <div className="text-white text-xl ">{ninja.name}</div>
+      <div className={`w-4 h-4 ${colorClasses[ninja.belt]}`} />
     </div>
-  </div>
+  </li>
 );

@@ -7,7 +7,6 @@ import {
   Post,
   Put,
   UseGuards,
-  ValidationPipe,
 } from '@nestjs/common';
 import { AuthGuard } from 'src/auth/auth.guard';
 import { NinjasService } from './ninjas.service';
@@ -19,10 +18,7 @@ import { UpdateNinjaDto } from './dto/update-ninja.dto';
 export class NinjasController {
   constructor(private readonly ninjasService: NinjasService) {}
 
-  // GET /ninjas
   @Get()
-  // /ninjas?belt=black
-  // @Query('belt') belt: 'black' | 'orange'
   getNinjas() {
     return this.ninjasService.getNinjas();
   }
@@ -33,11 +29,8 @@ export class NinjasController {
   }
 
   @Post()
-  createNinja(
-    @Body(new ValidationPipe()) dojoId: string,
-    createNinjaDto: CreateNinjaDto,
-  ) {
-    return this.ninjasService.addNinjaToDojo(dojoId, createNinjaDto);
+  createNinja(@Body() createNinjaDto: CreateNinjaDto) {
+    return this.ninjasService.addNinjaToDojo(createNinjaDto);
   }
 
   @Put(':id')

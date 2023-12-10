@@ -29,6 +29,7 @@ export class UsersService {
     return this.userRepository.findOneBy(conditions);
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   update(id: string, updateUserDto: UpdateUserDto) {
     return `This action updates a #${id} user`;
   }
