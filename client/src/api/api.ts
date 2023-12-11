@@ -40,11 +40,9 @@ export const put = async (location: string, body: any) => {
     });
 };
 
-export const del = async (location: string, body: any) => {
+export const del = async (location: string) => {
   return instance
-    .delete(config.BASE_URL + location, {
-      data: body,
-    })
+    .delete(config.BASE_URL + location)
     .then((response) => response.data)
     .catch((error) => {
       console.log(error);
