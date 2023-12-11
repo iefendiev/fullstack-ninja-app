@@ -3,7 +3,7 @@
 import { FormProvider, useForm } from 'react-hook-form';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
-import { login } from '@/api/login.api';
+import { useLogin } from '@/api/auth.api';
 import { FormInput } from '@/components/Input/FormInput';
 
 type FormData = {
@@ -15,10 +15,14 @@ export default function Login() {
   const methods = useForm<FormData>();
   const { handleSubmit } = methods;
   const { push } = useRouter();
+  const { mutate: login } = useLogin();
 
   const onSubmit = async (data: FormData) => {
-    await login(data);
-    push('/');
+    login(data, {
+      onSuccess: () => {
+        push('/');
+      },
+    });
   };
 
   return (

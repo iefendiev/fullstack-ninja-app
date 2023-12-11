@@ -20,7 +20,7 @@ export default function Dashboard() {
               <p className="text-white font-extrabold">
                 {dojo.name.toUpperCase()}
               </p>
-              <ul>
+              <ul className="flex flex-col gap-2">
                 {dojo.ninjas?.map((ninja) => (
                   <NinjaCard key={ninja.id} ninja={ninja} />
                 ))}

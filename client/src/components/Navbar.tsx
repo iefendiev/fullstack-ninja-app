@@ -1,10 +1,11 @@
 'use client';
-import { logout } from '@/api/login.api';
+import { useLogout } from '@/api/auth.api';
 import { ROUTES } from '@/constants';
 import { useRouter } from 'next/navigation';
 
 export const Navbar = () => {
   const { push } = useRouter();
+  const { mutate: logout } = useLogout();
 
   const handleLogout = () => {
     logout();

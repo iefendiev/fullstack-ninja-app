@@ -5,10 +5,10 @@ import Link from 'next/link';
 import { FormProvider, useForm } from 'react-hook-form';
 
 import AuthLayout from '../layout';
-import { register as registerUser } from '@/api/register.api';
 import { useRouter } from 'next/navigation';
 import { FormInput } from '@/components/Input/FormInput';
 import { ROUTES } from '@/constants';
+import { useRegister } from '@/api/auth.api';
 
 type FormData = {
   email: string;
@@ -20,13 +20,20 @@ export default function Register() {
   const methods = useForm<FormData>();
   const { push } = useRouter();
   const { handleSubmit } = methods;
+  const { mutate: registerUser } = useRegister();
 
-  const onSubmit = async (data: FormData) => {
-    await registerUser({
-      email: data.email,
-      password: data.password,
-    });
-    push(ROUTES.LOGIN);
+  const onSubmit = (data: FormData) => {
+    registerUser(
+      {
+        email: data.email,
+        password: data.password,
+      },
+      {
+        onSuccess: () => {
+          push(ROUTES.LOGIN);
+        },
+      }
+    );
   };
 
   return (
