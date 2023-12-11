@@ -1,6 +1,6 @@
 import { MinLength, IsEnum } from 'class-validator';
 
-enum Belt {
+export enum Belt {
   black = 'black',
   orange = 'orange',
   white = 'white',

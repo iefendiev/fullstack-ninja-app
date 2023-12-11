@@ -3,7 +3,7 @@ import { EditNinjaModal } from '../Dialog/EditNinjaModal/EditNinjaModal';
 import { NinjaIcon } from './NinjaIcon';
 import { NinjaCardProps } from './types';
 
-export const NinjaCard = ({ ninja, dojoId }: NinjaCardProps) => {
+export const NinjaCard = ({ ninja }: NinjaCardProps) => {
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
 
   return (
@@ -11,7 +11,6 @@ export const NinjaCard = ({ ninja, dojoId }: NinjaCardProps) => {
       <li className="text-left w-full hover:bg-slate-800 rounded-sm p-1 cursor-pointer">
         <EditNinjaModal
           ninja={ninja}
-          dojoId={dojoId}
           isOpen={isEditModalOpen}
           setIsOpen={setIsEditModalOpen}
           trigger={

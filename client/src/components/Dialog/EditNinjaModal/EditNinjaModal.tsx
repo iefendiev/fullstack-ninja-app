@@ -27,7 +27,6 @@ const BELT_OPTIONS: { label: string; value: BeltOptions }[] = [
 ];
 
 export const EditNinjaModal = ({
-  dojoId,
   ninja,
   isOpen,
   setIsOpen,
@@ -47,10 +46,7 @@ export const EditNinjaModal = ({
 
   const handleUpdateNinja = (ninjaFormData: FormValues) => {
     updateNinja(
-      {
-        dojoId,
-        ...ninjaFormData,
-      },
+      { id: ninja.id, ...ninjaFormData },
       {
         onSuccess: () => {
           refetchDojos();

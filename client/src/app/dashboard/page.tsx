@@ -22,7 +22,7 @@ export default function Dashboard() {
               </p>
               <ul className="flex flex-col gap-2">
                 {dojo.ninjas?.map((ninja) => (
-                  <NinjaCard key={ninja.id} ninja={ninja} dojoId={dojo.id} />
+                  <NinjaCard key={ninja.id} ninja={ninja} />
                 ))}
               </ul>
             </div>

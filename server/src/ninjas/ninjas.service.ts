@@ -40,7 +40,7 @@ export class NinjasService {
   }
 
   async updateNinja(id: string, updateNinjaDto: UpdateNinjaDto) {
-    // update it to db
+    // update it to db:
     // get one
     // perform changes
     // save it
