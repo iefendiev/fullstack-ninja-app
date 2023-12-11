@@ -1,9 +1,9 @@
 import { useQuery } from '@tanstack/react-query';
 import * as api from '../api';
-import { NinjaProps } from '@/types';
+import { Ninja } from '@/types';
 
 export const useNinjas = () =>
-  useQuery<NinjaProps[]>({
+  useQuery<Ninja[]>({
     queryKey: ['ninjas'],
     queryFn: () => api.get('/ninjas'),
   });

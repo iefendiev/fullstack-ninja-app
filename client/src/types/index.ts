@@ -4,14 +4,14 @@ export enum BeltOptions {
   WHITE = 'white',
 }
 
-export interface NinjaProps {
+export interface Ninja {
   id: number;
   name: string;
   belt: BeltOptions;
 }
 
-export interface DojoProps {
+export interface Dojo {
   id: number;
   name: string;
-  ninjas: NinjaProps[];
+  ninjas: Ninja[];
 }

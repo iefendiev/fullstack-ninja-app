@@ -1,8 +1,8 @@
 import { useMutation } from '@tanstack/react-query';
 import * as api from '../api';
-import { NinjaProps } from '@/types';
+import { Ninja } from '@/types';
 
-export interface CreateNinjaPayload extends Omit<NinjaProps, 'id'> {
+export interface CreateNinjaPayload extends Omit<Ninja, 'id'> {
   dojoId: number;
 }
 
