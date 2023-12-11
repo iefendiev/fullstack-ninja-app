@@ -4,6 +4,7 @@ export enum Belt {
   black = 'black',
   orange = 'orange',
   white = 'white',
+  red = 'red',
 }
 
 export class CreateNinjaDto {

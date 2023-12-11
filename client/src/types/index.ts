@@ -2,6 +2,7 @@ export enum BeltOptions {
   BLACK = 'black',
   ORANGE = 'orange',
   WHITE = 'white',
+  RED = 'Red',
 }
 
 export interface Ninja {

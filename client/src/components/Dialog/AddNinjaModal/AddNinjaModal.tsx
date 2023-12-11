@@ -19,6 +19,7 @@ import { FormControl, FormField, FormItem, FormLabel } from '../../Form/Form';
 import { useState } from 'react';
 import { useDojos } from '@/api/dojos/useDojos';
 import { BeltOptions } from '@/types';
+import { BELT_OPTIONS } from '@/constants';
 
 interface AddNinjaModalProps {
   dojoId: number;
@@ -28,12 +29,6 @@ type FormValues = {
   name: string;
   belt: BeltOptions;
 };
-
-const BELT_OPTIONS: { label: string; value: BeltOptions }[] = [
-  { label: 'Black', value: BeltOptions.BLACK },
-  { label: 'Orange', value: BeltOptions.ORANGE },
-  { label: 'White', value: BeltOptions.WHITE },
-];
 
 export const AddNinjaModal = ({ dojoId }: AddNinjaModalProps) => {
   const [isModalOpen, setIsModalOpen] = useState(false);

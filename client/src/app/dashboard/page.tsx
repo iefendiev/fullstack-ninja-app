@@ -13,7 +13,7 @@ export default function Dashboard() {
       <div className="flex flex-wrap gap-16">
         {dojos?.map((dojo) => (
           <div
-            className="flex flex-col justify-between gap-8 p-6 border border-solid border-white rounded-sm min-w-[500px]"
+            className="flex flex-col justify-between gap-8 p-6 border border-solid border-white rounded-sm min-w-[500px] hover:scale-105 transition-all"
             key={dojo.id}
           >
             <div className="flex flex-col gap-2">

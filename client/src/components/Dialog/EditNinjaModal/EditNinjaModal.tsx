@@ -18,13 +18,7 @@ import { FormControl, FormField, FormItem, FormLabel } from '../../Form/Form';
 import { useDojos } from '@/api/dojos/useDojos';
 import { useUpdateNinja } from '@/api/ninjas/useUpdateNinja';
 import { EditNinjaModalProps, FormValues } from './types';
-import { BeltOptions } from '@/types';
-
-const BELT_OPTIONS: { label: string; value: BeltOptions }[] = [
-  { label: 'Black', value: BeltOptions.BLACK },
-  { label: 'Orange', value: BeltOptions.ORANGE },
-  { label: 'White', value: BeltOptions.WHITE },
-];
+import { BELT_OPTIONS } from '@/constants';
 
 export const EditNinjaModal = ({
   ninja,
